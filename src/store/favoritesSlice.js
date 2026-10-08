@@ -3,12 +3,23 @@ import { createSlice } from "@reduxjs/toolkit";
 const favoritesSlice = createSlice({
     name: 'favourites',
     initialState: {
-        value: '🤍',
-        items: ['Hat', 'T-shirt', 'Shoes']
+        items: [
+            { id: 1, name: "Hat" },
+            { id: 2, name: "T-shirt" },
+            { id: 3, name: "Shoes" }
+        ]
     },
     reducers: {
-        liked(state) {
-            state.value = '❤️'
+        toggleFavorite(state, action) {
+            const newItems = state.items.filter(
+                item => item.id !== action.payload.id
+            );
+
+            if (newItems.length === state.items.length) {
+                state.items.push(action.payload);
+            } else {
+                state.items = newItems;
+            }
         }
     }
 })
