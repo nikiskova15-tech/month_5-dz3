@@ -1,31 +1,25 @@
-import { Card } from 'antd';
+import { Button, Card } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { liked } from '../store/favoritesSlice';
-// import { useThemeStore } from '../zustandStore/useThemeStore';
-
-// const SelectFavoritesCount = () => {
-
-//     const { theme, changeOnDark, changeOnLight } = useThemeStore()
-
-//     return (
-//         <div>
-
-//         </div>
-//     );
-// }
+import { useThemeStore } from '../zustandStore/useThemeStore';
 
 export default function Favorites() {
 
-    const { posts } = useSelector(state => state.favouritesReducer)
+    const { value, items } = useSelector(state => state.favouritesReducer)
 
     const dispatch = useDispatch()
 
+    const { theme, toggleTheme } = useThemeStore()
+
     return (
         <div>
+            <Button onClick={toggleTheme} type='primary'> Change theme to {theme}</Button>
             {
-                posts.map((post) => (
-                    <Card key={post.length} style={{ width: '207px' }} onClick={() => dispatch(liked())}>
-                        <h3>{post}</h3>
+                items.map((i) => (
+                    <Card key={i.length} onClick={() => dispatch(liked)}
+                        style={{ width: '207px', display: 'flex', justifyContent: 'space-between' }}>
+                        <h3>{i}</h3>
+                        <span>{value}</span>
                     </Card>
                 ))
             }
