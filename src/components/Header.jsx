@@ -10,13 +10,11 @@ const Header = () => {
     const { theme, toggleTheme } = useThemeStore();
 
     return (
-        <header>
+        <header style={{ display: 'flex', gap: '32px', alignItems: 'center', justifyContent: 'space-between' }}>
             <h2>Магазин</h2>
-
             <span>
                 Favorites: {favoritesCount} ❤️
             </span>
-
             <Button onClick={toggleTheme}>
                 Тема: {theme}
             </Button>
