@@ -24,7 +24,7 @@ const favoritesSlice = createSlice({
     }
 })
 
-export const { value, items, liked } = favoritesSlice.actions
+export const { items, toggleFavorite } = favoritesSlice.actions
 
 export const selectFavoritesCount = (state) => state.favouritesReducer.items.length
 

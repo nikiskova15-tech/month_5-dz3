@@ -1,25 +1,21 @@
-import { Card } from 'antd';
+import { Card, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { liked } from '../store/favoritesSlice';
-import { useThemeStore } from '../zustandStore/useThemeStore';
+import { toggleFavorite } from '../store/favoritesSlice';
 
 export default function Favorites() {
 
     const { items } = useSelector(state => state.favouritesReducer)
 
-    const isFavorite = items.some(item => item.id === i.id);
-
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <div style={{  display: 'flex', gap: '15px' }}>
             {
                 items.map((i) => (
-                    <Card key={i.length} onClick={() => dispatch(liked)}
-                        style={{ width: '207px', display: 'flex', justifyContent: 'space-between' }}>
-                        <h3>{i}</h3>
+                    <Card key={i.id} style={{ width: '207px', backgroundColor: 'light-grey' }}>
+                        <h3>{i.name}</h3>
                         <Button onClick={() => dispatch(toggleFavorite(i))}>
-                            {isFavorite ? "❤️" : "🤍"}
+                            {items.some(item => item.id === i.id) ? "❤️" : "🤍"}
                         </Button>
                     </Card>
                 ))
