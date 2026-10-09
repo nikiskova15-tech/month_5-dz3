@@ -1,14 +1,19 @@
 import Favorites from "./components/Favorites"
-import cls from "./App.module.scss"
+import  "./index.scss"
 import { useThemeStore } from "./zustandStore/useThemeStore";
 import Header from "./components/Header";
+import { useEffect } from 'react';
 
 function App() {
 
   const { theme } = useThemeStore();
-  
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
-    <div className={theme === 'light' ? cls.light : cls.dark} >
+    <div>
       <Header />
       <Favorites />
     </div>
