@@ -4,21 +4,19 @@ const favoritesSlice = createSlice({
     name: 'favourites',
     initialState: {
         items: [
-            { id: 1, name: "Hat" },
-            { id: 2, name: "T-shirt" },
-            { id: 3, name: "Shoes" }
+            { id: 1, name: "Hat", isLiked: false },
+            { id: 2, name: "T-shirt", isLiked: false },
+            { id: 3, name: "Shoes", isLiked: false }
         ]
     },
     reducers: {
         toggleFavorite(state, action) {
-            const newItems = state.items.filter(
-                item => item.id !== action.payload.id
+            const item = state.items.find(
+                item => item.id === action.payload.id
             );
 
-            if (newItems.length === state.items.length) {
-                state.items.push(action.payload);
-            } else {
-                state.items = newItems;
+            if (item) {
+                item.isLiked = !item.isLiked;
             }
         }
     }

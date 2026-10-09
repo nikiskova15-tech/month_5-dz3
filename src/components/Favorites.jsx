@@ -9,17 +9,16 @@ export default function Favorites() {
     const dispatch = useDispatch()
 
     return (
-        <div style={{  display: 'flex', gap: '15px' }}>
-            {
-                items.map((i) => (
-                    <Card key={i.id} style={{ width: '207px', backgroundColor: 'light-grey' }}>
-                        <h3>{i.name}</h3>
-                        <Button onClick={() => dispatch(toggleFavorite(i))}>
-                            {items.some(item => item.id === i.id) ? "❤️" : "🤍"}
-                        </Button>
-                    </Card>
-                ))
-            }
+        <div style={{ display: 'flex', gap: '15px' }}>
+            {items.map((i) => {
+                return(
+                <Card key={i.id} style={{ width: '207px', backgroundColor: 'lightgrey' }}>
+                    <h3>{i.name}</h3>
+                    <Button onClick={() => dispatch(toggleFavorite(i))}>
+                        { i.isLiked ? '❤️' : '🤍'}
+                    </Button>
+                </Card> )
+            })}
         </div>
     )
 }
